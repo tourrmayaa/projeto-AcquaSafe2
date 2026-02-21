@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Monitor de Água</title>
+</head>
+
+<body>
+<h1>Qualidade da Água</h1>
+
+<p>pH: <span id="ph">--</span></p>
+<p>Turbidez: <span id="turbidez">--</span></p>
+<p>Status: <span id="status">--</span></p>
+
+<script>
+async function atualizar() {
+    const res = await fetch("http://SEU_SERVIDOR:3000/ultimo");
+    const data = await res.json();
+
+    document.getElementById("ph").innerText = data.ph;
+    document.getElementById("turbidez").innerText = data.turbidez;
+    document.getElementById("status").innerText = data.status;
+}
+
+setInterval(atualizar, 3000);
+</script>
+
+</body>
+</html>
